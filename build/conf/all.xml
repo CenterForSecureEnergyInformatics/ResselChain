@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<Participants>
+	<Participant>
+		<Name>Example</Name>
+		<Address>127.0.0.1</Address>
+		<Port>57972</Port>
+		<PublicKey>MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDxru2SOzfWTSLCpA1wKwoHbpGAombgC5QKCYLOLoa9qhVxyU2Gkfi0JsEn0ZylDxiU5DYcz+VcIkBH1fY1aFMdDhr+jRYQXTxxynv3fp6X6I7kRr2qsAb2bmgt+3SrviPvM3oe042n/of/WqFgIDWrIPS+SggSPjCs6Rwg7cggdwIDAQAB</PublicKey>
+	</Participant>
+</Participants>

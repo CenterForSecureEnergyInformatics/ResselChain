@@ -1,0 +1,130 @@
+<project name="ResselChain" default="deploy" basedir=".">
+	<description>
+		Build all required jars for running ResselChain
+	</description>
+
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="bin" location="build/bin"/>
+	<property name="build" location="build"/>
+	<!-- add any other library folder here -->
+	<property name="lib.dir1" location="lib"/>
+	<!--<property name="lib.dir2" location="lib/neo4j"/>-->
+
+	<!-- build classpath for jar files, add library folder here -->
+	<target name="unjar_dependencies" depends="clean">
+		<unzip dest="${build}/lib">
+			<fileset dir="${lib.dir1}">
+				<include name="**/*.jar" />
+			</fileset>
+		</unzip>
+	</target>
+
+	<target name="init">
+		<echo> Java version: ${ant.java.version}</echo>
+		<!-- create the time stamp -->
+		<tstamp/>
+		<!-- create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build}/bin"/>
+		<mkdir dir="${build}/lib"/>
+	</target>
+
+	<!-- compile the java code from ${src} into ${build} -->
+	<target name="compile" depends="init" description="compile the source">
+		<javac srcdir="${src}" destdir="${bin}" debug="true">
+			<compilerarg line="-XDignore.symbol.file=true" />
+			<classpath>
+				<fileset dir="${lib.dir1}">
+					<include name="*.jar" />
+				</fileset>
+				<!--<fileset dir="${lib.dir2}">
+					<include name="*.jar" />
+				</fileset>-->
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- build jars, include all libraries and set classpath accordingly -->
+	<target name="jars" depends="compile">
+		<!-- unjar_dependencies -->
+		<jar destfile="${build}/jars/RC.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.Start"/>
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+
+
+		<jar destfile="${build}/jars/TxSender.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.TxSender"/>
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+		
+		<jar destfile="${build}/jars/UtilityTxSender.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.UtilityTxSender"/>
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+
+		<jar destfile="${build}/jars/Status.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.Status"/>
+				<attribute name="Class-Path" value="${lib.list.Status}"/>
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+
+		<jar destfile="${build}/jars/Portion.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.Portion"/>
+				<attribute name="Class-Path" value="${lib.list.Portion}"/>
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+		
+		<jar destfile="${build}/jars/BlockList.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.BlockList"/>
+				<attribute name="Class-Path" value="${lib.list.BlockList}"/>
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+		
+		<jar destfile="${build}/jars/XMLSender.jar" basedir="${bin}">
+			<manifest>
+				<attribute name="Main-Class" value="at.entrust.resselchain.main.XMLSender"/>
+				<!--attribute name="Class-Path" value="${lib.list.XMLSender}"/-->
+			</manifest>
+			<fileset dir="${build}/lib">
+				<exclude name="META-INF/*.*"/>
+				<include name="**/*.*" />
+			</fileset>
+		</jar>
+	</target>
+
+	<!-- delete the ${build} and ${dist} directory trees -->
+	<target name="clean" description="clean up">
+	</target>
+</project>
