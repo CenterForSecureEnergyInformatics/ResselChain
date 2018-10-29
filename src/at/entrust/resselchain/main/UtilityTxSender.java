@@ -36,8 +36,8 @@ public class UtilityTxSender {
 
 	private static void showUsage() {
 		System.out.println("Ressel Chain Utility Transaction Sender (UtilityTxSender)");
-		System.out.println("Creates a new asset plant and defines initial shares for participants.");
-		System.out.println("Usage: UtilityTxSender -h | -t | (-sraw <Node Address> <Node Port> <Sender Name> <Sender Private Key>) | (-sxml <Sender Node XML Config> <Receiver Node XML Config>) <asset Name> <kW Peak> {<Participant XML Config> <Participant Share>}");
+		System.out.println("Creates a new asset and defines initial shares for participants.");
+		System.out.println("Usage: UtilityTxSender -h | -t | (-sraw <Node Address> <Node Port> <Sender Name> <Sender Private Key>) | (-sxml <Sender Node XML Config> <Receiver Node XML Config>) <asset Name> <Asset Peak> {<Participant XML Config> <Participant Share>}");
 		System.out.println("-h : display help");
 		System.out.println("-t : print current timestamp");
 		System.out.println("-sraw : send raw transaction, all following arguments are mandatory");
@@ -122,7 +122,7 @@ public class UtilityTxSender {
 				
 				
 				String assetName = args[3];
-				double kWPeak = Double.valueOf(args[4]);
+				double assetMax = Double.valueOf(args[4]);
 				
 				ArrayList<Participant> participants = new ArrayList<>();
 				HashMap<Participant, Integer>  participantAmounts = new HashMap<>();
