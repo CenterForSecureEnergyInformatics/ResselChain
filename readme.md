@@ -30,7 +30,7 @@ How to run
     e) Optionally use *BlockList.jar* and *XMLSender.jar* for debugging.
          
 
-Licence
+License
 ---
 This code is licensed under a modified 3-Clause BSD License. See LICENSE file for details.
 
