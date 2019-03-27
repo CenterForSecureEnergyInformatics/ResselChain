@@ -1,1 +1,1 @@
-Please contact andreas.unterweger@en-trust.at for details.
+F. Knirsch, A. Unterweger, and D. Engel, "Implementing a Blockchain from Scratch: Why, How, and What We Learned," EURASIP Journal on Information Security, vol. 2019, iss. 2, p. 1–14, 2019.
